@@ -24,4 +24,8 @@ public class ProductImpl implements Product {
 	public ArrayList<Bidder> getBidders() throws RemoteException {
 		return this.bidders;
 	}
+
+	public void addBidder(Bidder bidder) throws RemoteException {
+		this.bidders.append(bidder);
+	}
 }
