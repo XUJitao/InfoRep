@@ -13,16 +13,21 @@ public class ProductImpl implements Product {
 		this.bidders = new ArrayList<Bidder>();
 	}
 
-	public boolean bid(Bidder bidder, int price) throws RemoteException {
+	public void bid(Bidder bidder, int price) throws RemoteException {
+		boolean success = false;
+		NotificationImpl n = new NotificationImpl();
 		if (price > this.price) {
 			this.price = price;
 			this.owner = bidder;
-			if (!this.bidders.contains(bidder))
+			if (!this.bidders.contains(bidder)) {
 				this.bidders.add(bidder);
-			return true;
+			}
+			success = true;
 		}
-		else {
-			return false;
+		if (success == True) {
+			n.notifierOffer(this.bidders);
+		} else {
+			n.refuseOffer(bidder);
 		}
 	}
 
