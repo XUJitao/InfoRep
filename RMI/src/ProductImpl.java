@@ -41,10 +41,8 @@ public class ProductImpl implements Product {
 		}
 		if (this.price >= this.expectedPrice) {
 			this.finished = true;
+			this.owner.notifierOwner(this);
 			for (Notification notification : this.notifs) {
-				if (this.owner.equals(n)) {
-					n.notifierOwner(this);
-				}
 				notification.notifierEnd(this);
 			}
 		}
