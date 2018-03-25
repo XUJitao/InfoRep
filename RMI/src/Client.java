@@ -55,7 +55,7 @@ public class Client {
 				for (Product p : products) {
 					if (p.getName().equalsIgnoreCase(productName)) {
 						System.out.println(p.getName());
-						p.bid(stubBidder, bidPrice, stubNotification);
+						p.bid(bidPrice, stubNotification);
 						break;
 					}
 				}

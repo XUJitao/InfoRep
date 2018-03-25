@@ -43,6 +43,10 @@ public class Serveur {
 				n.productList();
 			}
 
+			ArrayList<Integer> oldPrices = new ArrayList<>();
+			for(int i = 0; i < productList.size(); i++) {
+				oldPrices.add(productList.get(i).getPrice());
+			}
 			while (true) {
 				callbackNameList = registry.list();
 				if (nbCallback < callbackNameList.length) {
@@ -57,6 +61,19 @@ public class Serveur {
 					notificationList.get(nb).setProductList(productList);
 					notificationList.get(nb).productList();
 				}
+				ArrayList<Integer> newPrices = new ArrayList<>();
+				for(int i = 0; i < productList.size(); i++) {
+					newPrices.add(productList.get(i).getPrice());
+				}
+				for(int i = 0; i < productList.size(); i++) {
+					if (newPrices.get(i) != oldPrices.get(i)) {
+						ArrayList<Notification> renewNotif = productList.get(i).getNotifs();
+						for(int j = 0; j < renewNotif.size(); j++) {
+							renewNotif.get(j).notifierOffer(productList.get(i));
+						}
+					}
+				}
+				oldPrices = newPrices;
 			}
 		}
 		catch (Exception e) {

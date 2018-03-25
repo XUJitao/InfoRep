@@ -5,8 +5,8 @@ public class ProductImpl implements Product {
 	private String name;
 	private int price;
 	private int expectedPrice;
-	private Bidder owner;
-	private ArrayList<Bidder> bidders;
+	private Notification owner;
+	private ArrayList<Notification> notifs;
 	private boolean finished;
 
 	public ProductImpl(String name, int initialPrice, int expectedPrice) {
@@ -14,11 +14,11 @@ public class ProductImpl implements Product {
 		this.price = initialPrice;
 		this.expectedPrice = expectedPrice;
 		this.owner = null;
-		this.bidders = new ArrayList<Bidder>();
+		this.notifs = new ArrayList<Notification>();
 		this.finished = false;
 	}
 
-	public void bid(Bidder bidder, int price, Notification n) throws RemoteException {
+	public void bid(int price, Notification n) throws RemoteException {
 		if (this.finished == true) {
 			return;
 		}
@@ -26,9 +26,9 @@ public class ProductImpl implements Product {
 		boolean success = false;
 		if (price > this.price) {
 			this.price = price;
-			this.owner = bidder;
-			if (!this.bidders.contains(bidder)) {
-				this.bidders.add(bidder);
+			this.owner = n;
+			if (!this.notifs.contains(n)) {
+				this.notifs.add(n);
 			}
 			success = true;
 		}
@@ -44,8 +44,8 @@ public class ProductImpl implements Product {
 		}
 	}
 
-	public ArrayList<Bidder> getBidders() throws RemoteException {
-		return this.bidders;
+	public ArrayList<Notification> getNotifs() throws RemoteException {
+		return this.notifs;
 	}
 
 	public String getName() throws RemoteException {
