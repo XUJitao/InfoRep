@@ -29,7 +29,9 @@ public class Serveur {
 			System.out.println("Service IphoneXCallback et Pixel2Callback lient au registre.");
 
 			ArrayList<Notification> notificationList = new ArrayList<>();
+			
 			String[] callbackNameList = registry.list();
+			int nbCallback = callbackNameList.length;
 			for (int i = 0; i < callbackNameList.length; i++) {
 				if (callbackNameList[i].startsWith("NotificationCallback")) {
 					notificationList.add((Notification)registry.lookup(callbackNameList[i]));
@@ -42,10 +44,17 @@ public class Serveur {
 			}
 
 			while (true) {
-				
+				callbackNameList = registry.list();
+				if (nbCallback < callbackNameList.length) {
+					System.out.println("New product added.");
+					for (int i = nbCallback; i < callbackNameList.length; i++) {
+						if (callbackNameList[i].startsWith("NotificationCallback")) {
+							notificationList.add((Notification)registry.lookup(callbackNameList[i]));
+						}
+					}
+					nbCallback = callbackNameList.length;
+				}
 			}
-
-
 		}
 		catch (Exception e) {
 			System.out.println(e);
