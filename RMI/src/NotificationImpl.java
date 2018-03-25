@@ -4,9 +4,17 @@ import java.util.ArrayList;
 public class NotificationImpl implements Product {
 	private ArrayList<Product> prods;
 
+	public void setProductList(List<Product> prods) throws RemoteException{
+		this.prods = prods;
+	}
+
+	public ArrayList<Product> getProductList() throws RemoteException{
+		return this.prods;
+	}
+
 	public void productList() throws RemoteException {
 		for (int i = 0; i < prods.size(); i++) {
-			System.out.println("Produit: " + prods.get(i).getName() + "    Prix: " + prods.get(i).getPrice());
+			System.out.println("Produit: " + prods.get(i).getName() + " Prix actuel: " + prods.get(i).getPrice());
 		}
 	}
 

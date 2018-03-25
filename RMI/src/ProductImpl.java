@@ -15,9 +15,8 @@ public class ProductImpl implements Product {
 		this.bidders = new ArrayList<Bidder>();
 	}
 
-	public void bid(Bidder bidder, int price) throws RemoteException {
+	public void bid(Bidder bidder, int price, Notification n) throws RemoteException {
 		boolean success = false;
-		NotificationImpl n = new NotificationImpl();
 		if (price > this.price) {
 			this.price = price;
 			this.owner = bidder;
