@@ -26,11 +26,12 @@ public class ProductImpl implements Product {
 			success = true;
 		}
 		if (success == True) {
-			n.notifierOffer(this.getBidders());
+			n.notifierOffer(this);
 		} else {
-			n.refuseOffer(bidder);
+			n.refuseOffer(this);
 		}
 		if (this.price >= this.expectedPrice) {
+			notifierEnd(this);
 			notifierOwner(this);
 		}
 	}

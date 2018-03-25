@@ -25,11 +25,17 @@ public class Client {
 			products.add(pixel2);
 			stubBidder = (Bidder)UnicastRemoteObject.exportObject(bidder, 0);
 			stubNotification = (Notification)UnicastRemoteObject.exportObject(notifaction, 0);
-			if(!Arrays.asList(registry.list()).contains("NotificationCallback")) {
-				registry.bind("NotificationCallback", stubNotification);
-			}
-			else {
-				registry.rebind("NotificationCallback", stubNotification);
+			String notificationCallbackName = "NotificationCallback";
+			int nbNotif = 1;
+			while (True) {
+				String temp = notificationCallbackName + new String(nbNotif);
+				if(!Arrays.asList(registry.list()).contains(temp)) {
+					registry.bind(temp, stubNotification);
+					break;
+				}
+				else {
+					nbNotif++;
+				}
 			}
 			System.out.println("Service NotificationCallback lie au registre.")
 			

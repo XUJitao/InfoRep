@@ -27,8 +27,19 @@ public class Serveur {
 			}
 			System.out.println("Service IphoneXCallback et Pixel2Callback lient au registre.");
 
-			Notification n = (Notification)registry.lookup("NotificationCallback");
-			n.setProductList(productList);
+			List<Notification> notificationList = new ArrayList<>();
+			String[] callbackNameList = registry.list();
+			for (int i = 0; i < callbackNameList.length; i++) {
+				if (callbackNameList.get(i).startsWith("NotificationCallback")) {
+					notificationList.add((Notification)registry.lookup(callbackNameList.get(i)));
+				}
+			}
+
+			for (Notification n : notificationList) {
+				n.setProductList(productList);
+			}
+
+
 		}
 		catch (Exception e) {
 			System.out.println(e);
