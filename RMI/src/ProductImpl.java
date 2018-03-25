@@ -34,4 +34,12 @@ public class ProductImpl implements Product {
 	public ArrayList<Bidder> getBidders() throws RemoteException {
 		return this.bidders;
 	}
+
+	public String getName() throws RemoteException {
+		return this.name;
+	}
+
+	public int getPrice() throws RemoteException {
+		return this.price;
+	}
 }
