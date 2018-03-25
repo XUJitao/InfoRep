@@ -11,7 +11,7 @@ public class NotificationImpl implements Product {
 	}
 
 	public void notifierOffer(Product prod) throws RemoteException {
-		System.out.println("Le produit: " + prod.getName() +" a un nouveau prix: " + prod.getPrice());
+		System.out.println("Le prix actuel de produit: " + prod.getName() +" est " + prod.getPrice());
 	}
 
 	public void refuseOffer(Product prod) throws RemoteException {
@@ -20,6 +20,10 @@ public class NotificationImpl implements Product {
 	}
 
 	public void notifierEnd(Product prod) throws RemoteException {
-		System.out.println("L'enchères du produit: " + prod.getName() " est déjà fermé");
+		System.out.println("L'enchère du produit: " + prod.getName() " est déjà fermé");
+	}
+
+	public void notifierOwner(Product prod) throws RemoteException {
+		System.out.println("Vous avez réussi d'acheté " + prod.getName() + " avec le prix " + prod.getPrice());
 	}
 }

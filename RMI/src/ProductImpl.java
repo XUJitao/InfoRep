@@ -3,12 +3,14 @@ import java.rmi.RemoteException;
 public class ProductImpl implements Product {
 	private String name;
 	private int price;
+	private int expectedPrice;
 	private Bidder owner;
 	private ArrayList<Bidder> bidders;
 
-	public ProductImpl(String name, int price) {
+	public ProductImpl(String name, int initialPrice, int expectedPrice) {
 		this.name = name;
-		this.price = price;
+		this.price = initialPrice;
+		this.expectedPrice = expectedPrice;
 		this.owner = null;
 		this.bidders = new ArrayList<Bidder>();
 	}
@@ -28,6 +30,9 @@ public class ProductImpl implements Product {
 			n.notifierOffer(this.bidders);
 		} else {
 			n.refuseOffer(bidder);
+		}
+		if (this.price >= this.expectedPrice) {
+			notifierOwner(this);
 		}
 	}
 
