@@ -41,6 +41,10 @@ public class Serveur {
 				n.productList();
 			}
 
+			while (true) {
+				
+			}
+
 
 		}
 		catch (Exception e) {

@@ -2,7 +2,7 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 public class NotificationImpl implements Notification {
-	private ArrayList<Product> prods;
+	private ArrayList<Product> prods = new ArrayList<>();
 
 	public void setProductList(ArrayList<Product> prods) throws RemoteException{
 		this.prods = prods;

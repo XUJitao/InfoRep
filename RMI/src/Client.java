@@ -50,7 +50,7 @@ public class Client {
 				String[] parts = bid.split(" ");
 				String productName = parts[0];
 				int bidPrice = Integer.parseInt(parts[1]);
-				ArrayList<Product> products = stubNotification.getProductList();
+				ArrayList<Product> products = notification.getProductList();
 				for (Product p : products) {
 					if (p.getName().equalsIgnoreCase(productName)) {
 						p.bid(stubBidder, bidPrice, stubNotification);
