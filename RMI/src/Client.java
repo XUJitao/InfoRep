@@ -29,6 +29,7 @@ public class Client {
 			int nbNotif = 1;
 			while (true) {
 				String temp = notificationCallbackName + nbNotif;
+				System.out.println(temp);
 				if(!Arrays.asList(registry.list()).contains(temp)) {
 					registry.bind(temp, stubNotification);
 					break;
