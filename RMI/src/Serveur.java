@@ -47,11 +47,11 @@ public class Serveur {
 				callbackNameList = registry.list();
 				if (nbCallback < callbackNameList.length) {
 					System.out.println("New product added.");
-					for (int i = nbCallback; i < callbackNameList.length; i++) {
-						if (callbackNameList[i].startsWith("NotificationCallback")) {
-							notificationList.add((Notification)registry.lookup(callbackNameList[i]));
+					//for (int i = 0; i < callbackNameList.length; i++) {
+					//	System.out.println(callbackNameList[i]);
+					if (callbackNameList[0].startsWith("NotificationCallback")) {
+						notificationList.add((Notification)registry.lookup(callbackNameList[0]));
 						}
-					}
 					nbCallback = callbackNameList.length;
 					for (Notification n : notificationList) {
 						n.setProductList(productList);
