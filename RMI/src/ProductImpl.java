@@ -19,7 +19,7 @@ public class ProductImpl implements Product {
 	}
 
 	public void bid(Bidder bidder, int price, Notification n) throws RemoteException {
-		if (this.finished = true) {
+		if (this.finished == true) {
 			return;
 		}
 
