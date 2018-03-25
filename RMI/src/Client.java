@@ -27,7 +27,7 @@ public class Client {
 			stubNotification = (Notification)UnicastRemoteObject.exportObject(notifaction, 0);
 			String notificationCallbackName = "NotificationCallback";
 			int nbNotif = 1;
-			while (True) {
+			while (true) {
 				String temp = notificationCallbackName + new String(nbNotif);
 				if(!Arrays.asList(registry.list()).contains(temp)) {
 					registry.bind(temp, stubNotification);
@@ -39,18 +39,20 @@ public class Client {
 			}
 			System.out.println("Service NotificationCallback lie au registre.")
 			
-			System.out.println("Saisir le nom de produit et le prix d'enchère, SVP. Exit pour ne pas faire enchère.");
-			sc = new Scanner(System.in);
-			String bid = sc.nextLine();
-			if (bid.equalsIgnoreCase("exit")) {
-				break;
-			}
-			String[] parts = bid.split(" ");
-			Stirng productName = parts[0];
-			String bidPrice = parts[1];
-			for (Product p : products) {
-				if (p.getName().equalsIgnoreCase(productName)) {
-					p.bid(stubBidder, bidPrice, stubNotification);
+			while (true) { 
+				System.out.println("Saisir le nom de produit et le prix d'enchère, SVP. Exit pour ne pas faire enchère.");
+				sc = new Scanner(System.in);
+				String bid = sc.nextLine();
+				if (bid.equalsIgnoreCase("exit")) {
+					break;
+				}
+				String[] parts = bid.split(" ");
+				Stirng productName = parts[0];
+				String bidPrice = parts[1];
+				for (Product p : products) {
+					if (p.getName().equalsIgnoreCase(productName)) {
+						p.bid(stubBidder, bidPrice, stubNotification);
+					}
 				}
 			}
 		}

@@ -37,6 +37,7 @@ public class Serveur {
 
 			for (Notification n : notificationList) {
 				n.setProductList(productList);
+				n.productList();
 			}
 
 
