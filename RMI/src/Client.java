@@ -54,6 +54,7 @@ public class Client {
 				ArrayList<Product> products = notification.getProductList();
 				for (Product p : products) {
 					if (p.getName().equalsIgnoreCase(productName)) {
+						System.out.println(p.getName());
 						p.bid(stubBidder, bidPrice, stubNotification);
 						break;
 					}

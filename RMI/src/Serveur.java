@@ -47,21 +47,15 @@ public class Serveur {
 				callbackNameList = registry.list();
 				if (nbCallback < callbackNameList.length) {
 					System.out.println("New product added.");
-					//for (int i = 0; i < callbackNameList.length; i++) {
-					//	System.out.println(callbackNameList[i]);
 					int prodSize = productList.size();
 					int registrySize = callbackNameList.length;
 					int nb = registrySize - prodSize - 1;
 					if (callbackNameList[nb].startsWith("NotificationCallback")) {
 						notificationList.add((Notification)registry.lookup(callbackNameList[nb]));
 					}
-					//}
 					nbCallback = callbackNameList.length;
-					//for (int i = 0; i < notificationList.size(); i++) {
-					//	System.out.println(notificationList.get(i));
-						notificationList.get(nb).setProductList(productList);
-						notificationList.get(nb).productList();
-					//}
+					notificationList.get(nb).setProductList(productList);
+					notificationList.get(nb).productList();
 				}
 			}
 		}
