@@ -18,11 +18,11 @@ public class Client {
 		}
 		try { 
 			Registry registry = LocateRegistry.getRegistry(port);
-			List<Product> products = new ArrayList<>();
+			/*List<Product> products = new ArrayList<>();
 			Product iphoneX = (Product)registry.lookup("IphoneXCallback");
 			Product pixel2 = (Product)registry.lookup("Pixel2Callback");
 			products.add(iphoneX);
-			products.add(pixel2);
+			products.add(pixel2);*/
 			stubBidder = (Bidder)UnicastRemoteObject.exportObject(bidder, 0);
 			stubNotification = (Notification)UnicastRemoteObject.exportObject(notification, 0);
 			String notificationCallbackName = "NotificationCallback";
@@ -44,14 +44,17 @@ public class Client {
 				sc = new Scanner(System.in);
 				String bid = sc.nextLine();
 				if (bid.equalsIgnoreCase("exit")) {
+					UnicastRemoteObject.unexportObject(notification, true);
 					break;
 				}
 				String[] parts = bid.split(" ");
 				String productName = parts[0];
 				int bidPrice = Integer.parseInt(parts[1]);
+				ArrayList<Product> products = stubNotification.getProductList();
 				for (Product p : products) {
 					if (p.getName().equalsIgnoreCase(productName)) {
 						p.bid(stubBidder, bidPrice, stubNotification);
+						break;
 					}
 				}
 			}
