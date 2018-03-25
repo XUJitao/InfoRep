@@ -32,10 +32,11 @@ public class ProductImpl implements Product {
 				this.notifs.add(n);
 			}
 			success = true;
+			for(int i = 0; i < this.notifs.size(); i++) {
+				this.notifs.get(i).notifierOffer(this);
+			}
 		}
-		if (success == true) {
-			n.notifierOffer(this);
-		} else {
+		if (success != true) {
 			n.refuseOffer(this);
 		}
 		if (this.price >= this.expectedPrice) {

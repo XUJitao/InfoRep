@@ -61,7 +61,7 @@ public class Serveur {
 					notificationList.get(nb).setProductList(productList);
 					notificationList.get(nb).productList();
 				}
-				ArrayList<Integer> newPrices = new ArrayList<>();
+				/*ArrayList<Integer> newPrices = new ArrayList<>();
 				for(int i = 0; i < productList.size(); i++) {
 					newPrices.add(productList.get(i).getPrice());
 				}
@@ -73,7 +73,7 @@ public class Serveur {
 						}
 						oldPrices.set(i, newPrices.get(i));
 					}
-				}
+				}*/
 			}
 		}
 		catch (Exception e) {
