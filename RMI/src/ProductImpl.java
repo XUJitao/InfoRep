@@ -27,7 +27,7 @@ public class ProductImpl implements Product {
 			success = true;
 		}
 		if (success == True) {
-			n.notifierOffer(this.bidders);
+			n.notifierOffer(this.getBidders());
 		} else {
 			n.refuseOffer(bidder);
 		}

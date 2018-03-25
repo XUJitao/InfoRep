@@ -7,8 +7,8 @@ public class Serveur {
 		if(args.length == 1)
 			port = Integer.parseInt(args[0]);
 		try {
-			Product stubIphone = (Product)UnicastRemobeObject.exportObject(new ProductImpl("Iphone", 500), 0);
-			Product stubPixel = (Product)UnicastRemobeObject.exportObject(new ProductImpl("Pixel2", 400), 0);
+			Product stubIphone = (Product)UnicastRemobeObject.exportObject(new ProductImpl("IphoneX", 500, 900), 0);
+			Product stubPixel = (Product)UnicastRemobeObject.exportObject(new ProductImpl("Pixel2", 400， 700), 0);
 			Registry registry = LocateRegistry.getRegistry(port);
 			if(!Arrays.asList(registry.list()).contains("IphoneCallback")) {
 				registry.bind("IphoneCallback", stubIphone);
