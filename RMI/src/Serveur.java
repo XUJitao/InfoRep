@@ -66,7 +66,7 @@ public class Serveur {
 					newPrices.add(productList.get(i).getPrice());
 				}
 				for(int i = 0; i < productList.size(); i++) {
-					if (newPrices.get(i) - oldPrices.get(i) == 0) {
+					if (newPrices.get(i) - oldPrices.get(i) != 0) {
 						ArrayList<Notification> renewNotif = productList.get(i).getNotifs();
 						for(int j = 0; j < renewNotif.size(); j++) {
 							renewNotif.get(j).notifierOffer(productList.get(i));
