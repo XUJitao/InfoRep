@@ -53,6 +53,10 @@ public class Serveur {
 						}
 					}
 					nbCallback = callbackNameList.length;
+					for (Notification n : notificationList) {
+						n.setProductList(productList);
+						n.productList();
+					}
 				}
 			}
 		}
