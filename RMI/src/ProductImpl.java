@@ -20,6 +20,7 @@ public class ProductImpl implements Product {
 
 	public void bid(int price, Notification n) throws RemoteException {
 		if (this.finished == true) {
+			n.notifierEnd(this);
 			return;
 		}
 
@@ -39,8 +40,12 @@ public class ProductImpl implements Product {
 		}
 		if (this.price >= this.expectedPrice) {
 			this.finished = true;
-			n.notifierEnd(this);
-			n.notifierOwner(this);
+			for (Notification notification : this.notifs) {
+				if (this.owner.equals(n)) {
+					n.notifierOwner(this);
+				}
+				notification.notifierEnd(this);
+			}
 		}
 	}
 
