@@ -1,10 +1,10 @@
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.util.*;
 
-public class NotificationImpl implements Product {
+public class NotificationImpl implements Notification {
 	private ArrayList<Product> prods;
 
-	public void setProductList(List<Product> prods) throws RemoteException{
+	public void setProductList(ArrayList<Product> prods) throws RemoteException{
 		this.prods = prods;
 	}
 
@@ -28,7 +28,7 @@ public class NotificationImpl implements Product {
 	}
 
 	public void notifierEnd(Product prod) throws RemoteException {
-		System.out.println("L'enchère du produit: " + prod.getName() " est déjà fermé");
+		System.out.println("L'enchère du produit: " + prod.getName() + " est déjà fermé");
 	}
 
 	public void notifierOwner(Product prod) throws RemoteException {

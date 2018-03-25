@@ -1,4 +1,5 @@
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public class ProductImpl implements Product {
 	private String name;
@@ -25,14 +26,14 @@ public class ProductImpl implements Product {
 			}
 			success = true;
 		}
-		if (success == True) {
+		if (success == true) {
 			n.notifierOffer(this);
 		} else {
 			n.refuseOffer(this);
 		}
 		if (this.price >= this.expectedPrice) {
-			notifierEnd(this);
-			notifierOwner(this);
+			n.notifierEnd(this);
+			n.notifierOwner(this);
 		}
 	}
 

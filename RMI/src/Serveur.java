@@ -1,4 +1,5 @@
 import java.rmi.registry.*;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 public class Serveur {
@@ -7,9 +8,9 @@ public class Serveur {
 		if(args.length == 1)
 			port = Integer.parseInt(args[0]);
 		try {
-			List<Product> productList = new ArrayList<>();
-			Product stubIphone = (Product)UnicastRemobeObject.exportObject(new ProductImpl("IphoneX", 500, 900), 0);
-			Product stubPixel2 = (Product)UnicastRemobeObject.exportObject(new ProductImpl("Pixel2", 400， 700), 0);
+			ArrayList<Product> productList = new ArrayList<>();
+			Product stubIphone = (Product)UnicastRemoteObject.exportObject(new ProductImpl("IphoneX", 500, 900), 0);
+			Product stubPixel2 = (Product)UnicastRemoteObject.exportObject(new ProductImpl("Pixel2", 400, 700), 0);
 			productList.add(stubIphone);
 			productList.add(stubPixel2);
 			Registry registry = LocateRegistry.getRegistry(port);
@@ -20,18 +21,18 @@ public class Serveur {
 				registry.rebind("IphoneXCallback", stubIphone);
 			}
 			if(!Arrays.asList(registry.list()).contains("Pixel2Callback")) {
-				registry.bind("Pixel2Callback", stubPixel);
+				registry.bind("Pixel2Callback", stubPixel2);
 			}
 			else {
-				registry.rebind("Pixel2Callback", stubPixel);
+				registry.rebind("Pixel2Callback", stubPixel2);
 			}
 			System.out.println("Service IphoneXCallback et Pixel2Callback lient au registre.");
 
-			List<Notification> notificationList = new ArrayList<>();
+			ArrayList<Notification> notificationList = new ArrayList<>();
 			String[] callbackNameList = registry.list();
 			for (int i = 0; i < callbackNameList.length; i++) {
-				if (callbackNameList.get(i).startsWith("NotificationCallback")) {
-					notificationList.add((Notification)registry.lookup(callbackNameList.get(i)));
+				if (callbackNameList[i].startsWith("NotificationCallback")) {
+					notificationList.add((Notification)registry.lookup(callbackNameList[i]));
 				}
 			}
 

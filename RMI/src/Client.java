@@ -1,6 +1,6 @@
 import java.rmi.registry.*;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
+import java.util.*;
 
 public class Client {
 	public static void main(String args[]) {
@@ -24,11 +24,11 @@ public class Client {
 			products.add(iphoneX);
 			products.add(pixel2);
 			stubBidder = (Bidder)UnicastRemoteObject.exportObject(bidder, 0);
-			stubNotification = (Notification)UnicastRemoteObject.exportObject(notifaction, 0);
+			stubNotification = (Notification)UnicastRemoteObject.exportObject(notification, 0);
 			String notificationCallbackName = "NotificationCallback";
 			int nbNotif = 1;
 			while (true) {
-				String temp = notificationCallbackName + new String(nbNotif);
+				String temp = notificationCallbackName + nbNotif;
 				if(!Arrays.asList(registry.list()).contains(temp)) {
 					registry.bind(temp, stubNotification);
 					break;
@@ -37,7 +37,7 @@ public class Client {
 					nbNotif++;
 				}
 			}
-			System.out.println("Service NotificationCallback lie au registre.")
+			System.out.println("Service NotificationCallback lie au registre.");
 			
 			while (true) { 
 				System.out.println("Saisir le nom de produit et le prix d'enchère, SVP. Exit pour ne pas faire enchère.");
@@ -47,8 +47,8 @@ public class Client {
 					break;
 				}
 				String[] parts = bid.split(" ");
-				Stirng productName = parts[0];
-				String bidPrice = parts[1];
+				String productName = parts[0];
+				int bidPrice = Integer.parseInt(parts[1]);
 				for (Product p : products) {
 					if (p.getName().equalsIgnoreCase(productName)) {
 						p.bid(stubBidder, bidPrice, stubNotification);
