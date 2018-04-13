@@ -7,6 +7,7 @@ import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
@@ -30,17 +31,22 @@ public interface CalculatriceServer {
      * @param arg0
      * @return
      *     returns int
+     * @throws NonPositiveException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "addition", targetNamespace = "http://service.SOAP/", className = "client.Addition")
     @ResponseWrapper(localName = "additionResponse", targetNamespace = "http://service.SOAP/", className = "client.AdditionResponse")
-    @Action(input = "http://service.SOAP/CalculatriceServer/additionRequest", output = "http://service.SOAP/CalculatriceServer/additionResponse")
+    @Action(input = "http://service.SOAP/CalculatriceServer/additionRequest", output = "http://service.SOAP/CalculatriceServer/additionResponse", fault = {
+        @FaultAction(className = NonPositiveException_Exception.class, value = "http://service.SOAP/CalculatriceServer/addition/Fault/NonPositiveException")
+    })
     public int addition(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
+        int arg1)
+        throws NonPositiveException_Exception
+    ;
 
     /**
      * 
@@ -48,17 +54,22 @@ public interface CalculatriceServer {
      * @param arg0
      * @return
      *     returns int
+     * @throws NonPositiveException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "soustraction", targetNamespace = "http://service.SOAP/", className = "client.Soustraction")
     @ResponseWrapper(localName = "soustractionResponse", targetNamespace = "http://service.SOAP/", className = "client.SoustractionResponse")
-    @Action(input = "http://service.SOAP/CalculatriceServer/soustractionRequest", output = "http://service.SOAP/CalculatriceServer/soustractionResponse")
+    @Action(input = "http://service.SOAP/CalculatriceServer/soustractionRequest", output = "http://service.SOAP/CalculatriceServer/soustractionResponse", fault = {
+        @FaultAction(className = NonPositiveException_Exception.class, value = "http://service.SOAP/CalculatriceServer/soustraction/Fault/NonPositiveException")
+    })
     public int soustraction(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
+        int arg1)
+        throws NonPositiveException_Exception
+    ;
 
     /**
      * 
@@ -66,17 +77,22 @@ public interface CalculatriceServer {
      * @param arg0
      * @return
      *     returns int
+     * @throws NonPositiveException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "multiplication", targetNamespace = "http://service.SOAP/", className = "client.Multiplication")
     @ResponseWrapper(localName = "multiplicationResponse", targetNamespace = "http://service.SOAP/", className = "client.MultiplicationResponse")
-    @Action(input = "http://service.SOAP/CalculatriceServer/multiplicationRequest", output = "http://service.SOAP/CalculatriceServer/multiplicationResponse")
+    @Action(input = "http://service.SOAP/CalculatriceServer/multiplicationRequest", output = "http://service.SOAP/CalculatriceServer/multiplicationResponse", fault = {
+        @FaultAction(className = NonPositiveException_Exception.class, value = "http://service.SOAP/CalculatriceServer/multiplication/Fault/NonPositiveException")
+    })
     public int multiplication(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
+        int arg1)
+        throws NonPositiveException_Exception
+    ;
 
     /**
      * 
@@ -84,16 +100,21 @@ public interface CalculatriceServer {
      * @param arg0
      * @return
      *     returns int
+     * @throws NonPositiveException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "division", targetNamespace = "http://service.SOAP/", className = "client.Division")
     @ResponseWrapper(localName = "divisionResponse", targetNamespace = "http://service.SOAP/", className = "client.DivisionResponse")
-    @Action(input = "http://service.SOAP/CalculatriceServer/divisionRequest", output = "http://service.SOAP/CalculatriceServer/divisionResponse")
+    @Action(input = "http://service.SOAP/CalculatriceServer/divisionRequest", output = "http://service.SOAP/CalculatriceServer/divisionResponse", fault = {
+        @FaultAction(className = NonPositiveException_Exception.class, value = "http://service.SOAP/CalculatriceServer/division/Fault/NonPositiveException")
+    })
     public int division(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
+        int arg1)
+        throws NonPositiveException_Exception
+    ;
 
 }

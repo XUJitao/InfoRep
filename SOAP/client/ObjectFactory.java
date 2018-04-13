@@ -32,6 +32,7 @@ public class ObjectFactory {
     private final static QName _Division_QNAME = new QName("http://service.SOAP/", "division");
     private final static QName _DivisionResponse_QNAME = new QName("http://service.SOAP/", "divisionResponse");
     private final static QName _AdditionResponse_QNAME = new QName("http://service.SOAP/", "additionResponse");
+    private final static QName _NonPositiveException_QNAME = new QName("http://service.SOAP/", "NonPositiveException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: client
@@ -62,6 +63,14 @@ public class ObjectFactory {
      */
     public DivisionResponse createDivisionResponse() {
         return new DivisionResponse();
+    }
+
+    /**
+     * Create an instance of {@link NonPositiveException }
+     * 
+     */
+    public NonPositiveException createNonPositiveException() {
+        return new NonPositiveException();
     }
 
     /**
@@ -174,6 +183,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.SOAP/", name = "additionResponse")
     public JAXBElement<AdditionResponse> createAdditionResponse(AdditionResponse value) {
         return new JAXBElement<AdditionResponse>(_AdditionResponse_QNAME, AdditionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link NonPositiveException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.SOAP/", name = "NonPositiveException")
+    public JAXBElement<NonPositiveException> createNonPositiveException(NonPositiveException value) {
+        return new JAXBElement<NonPositiveException>(_NonPositiveException_QNAME, NonPositiveException.class, null, value);
     }
 
 }

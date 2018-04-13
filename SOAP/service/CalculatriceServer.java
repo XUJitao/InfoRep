@@ -8,14 +8,14 @@ import javax.jws.soap.SOAPBinding.Style;
 @WebService
 public interface CalculatriceServer {
 	@WebMethod
-	public int addition(int a, int b);
+	public int addition(int a, int b) throws NonPositiveException;
 
 	@WebMethod
-	public int soustraction(int a, int b);
+	public int soustraction(int a, int b) throws NonPositiveException;
 
 	@WebMethod
-	public int multiplication(int a, int b);
+	public int multiplication(int a, int b) throws NonPositiveException;
 
 	@WebMethod
-	public int division(int a, int b);
+	public int division(int a, int b) throws NonPositiveException;
 }
