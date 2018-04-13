@@ -61,19 +61,6 @@ public class Serveur {
 					notificationList.get(nb).setProductList(productList);
 					notificationList.get(nb).productList();
 				}
-				/*ArrayList<Integer> newPrices = new ArrayList<>();
-				for(int i = 0; i < productList.size(); i++) {
-					newPrices.add(productList.get(i).getPrice());
-				}
-				for(int i = 0; i < productList.size(); i++) {
-					if (newPrices.get(i) - oldPrices.get(i) != 0) {
-						ArrayList<Notification> renewNotif = productList.get(i).getNotifs();
-						for(int j = 0; j < renewNotif.size(); j++) {
-							renewNotif.get(j).notifierOffer(productList.get(i));
-						}
-						oldPrices.set(i, newPrices.get(i));
-					}
-				}*/
 			}
 		}
 		catch (Exception e) {
