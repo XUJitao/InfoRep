@@ -28,16 +28,16 @@ public class CalculatriceServerImpl implements CalculatriceServer {
 	}
 
 	public int getOperande(String operande) throws EntreeNegatifException, EntreeNonEntierException{
+		int opInt;
+		try {
+			opInt = Integer.parseInt(operande);
+		}
+		catch(Exception e) {
+			throw new EntreeNonEntierException("L'opérande entré doit être entier.");
+		}
 		if (Integer.parseInt(operande) < 0) {
 			throw new EntreeNegatifException("L'opérande entré doit être non négatif.");
 		}
-
-		if (operande.contains(".")) {
-			throw new EntreeNonEntierException("L'opérande entré doit être entier.");
-		}
-
-		int opInt = Integer.parseInt(operande);
-
 		return opInt;
 	}
 }

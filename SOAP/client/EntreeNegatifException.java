@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>NonPositiveException complex type的 Java 类。
+ * <p>EntreeNegatifException complex type的 Java 类。
  * 
  * <p>以下模式片段指定包含在此类中的预期内容。
  * 
  * <pre>
- * &lt;complexType name="NonPositiveException">
+ * &lt;complexType name="EntreeNegatifException">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "NonPositiveException", propOrder = {
+@XmlType(name = "EntreeNegatifException", propOrder = {
     "message"
 })
-public class NonPositiveException {
+public class EntreeNegatifException {
 
     protected String message;
 

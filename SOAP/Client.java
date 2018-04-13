@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Client {
 	
-	public static void main(String[] args) throws NonPositiveException_Exception {
+	public static void main(String[] args) throws DiviseurNullException_Exception, EntreeNegatifException_Exception, EntreeNonEntierException_Exception, ResultatNegatifException_Exception {
 		Scanner sc;
 		CalculatriceServerImplService service = new CalculatriceServerImplService();
 		CalculatriceServer port = service.getCalculatriceServerImplPort();
@@ -17,28 +17,30 @@ public class Client {
 			if (calcul.equalsIgnoreCase("exit"))
 				break;
 			String[] composants = calcul.split(" ");
-			int operande1 = Integer.parseInt(composants[0]);
-			int operande2 = Integer.parseInt(composants[2]);
+			String operande1 = composants[0];
+			String operande2 = composants[2];
 			String operation = composants[1];
 			int result = 0;
 			try {
+				int op1 = port.getOperande(operande1);
+				int op2 = port.getOperande(operande2);
 				switch(operation) {
 					case "+":
-						result = port.addition(operande1, operande2);
+						result = port.addition(op1, op2);
 						break;
 					case "-":
-						result = port.soustraction(operande1, operande2);
+						result = port.soustraction(op1, op2);
 						break;
 					case "*":
-						result = port.multiplication(operande1, operande2);
+						result = port.multiplication(op1, op2);
 						break;
 					case "/":
-						result = port.division(operande1, operande2);
+						result = port.division(op1, op2);
 						break;
 				}
 				System.out.println("Le résultat est : " + result);
 			}
-			catch (NonPositiveException_Exception e) {
+			catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
 		}

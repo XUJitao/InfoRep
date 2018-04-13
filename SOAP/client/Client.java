@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Client {
 	
-	public static void main(String[] args) throws NonPositiveException_Exception {
+	public static void main(String[] args) throws DiviseurNullException_Exception, EntreeNegatifException_Exception, EntreeNonEntierException_Exception, ResultatNegatifException_Exception {
 		Scanner sc;
 		CalculatriceServerImplService service = new CalculatriceServerImplService();
 		CalculatriceServer port = service.getCalculatriceServerImplPort();
@@ -40,7 +40,7 @@ public class Client {
 				}
 				System.out.println("Le résultat est : " + result);
 			}
-			catch (NonPositiveException_Exception e) {
+			catch (Exception e) {
 				System.err.println(e.getMessage());
 			}
 		}

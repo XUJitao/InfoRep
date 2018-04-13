@@ -10,8 +10,8 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "NonPositiveException", targetNamespace = "http://service.SOAP/")
-public class NonPositiveException_Exception
+@WebFault(name = "EntreeNegatifException", targetNamespace = "http://service.SOAP/")
+public class EntreeNegatifException_Exception
     extends Exception
 {
 
@@ -19,14 +19,14 @@ public class NonPositiveException_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private NonPositiveException faultInfo;
+    private EntreeNegatifException faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public NonPositiveException_Exception(String message, NonPositiveException faultInfo) {
+    public EntreeNegatifException_Exception(String message, EntreeNegatifException faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class NonPositiveException_Exception
      * @param cause
      * @param message
      */
-    public NonPositiveException_Exception(String message, NonPositiveException faultInfo, Throwable cause) {
+    public EntreeNegatifException_Exception(String message, EntreeNegatifException faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class NonPositiveException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: client.NonPositiveException
+     *     returns fault bean: client.EntreeNegatifException
      */
-    public NonPositiveException getFaultInfo() {
+    public EntreeNegatifException getFaultInfo() {
         return faultInfo;
     }
 
