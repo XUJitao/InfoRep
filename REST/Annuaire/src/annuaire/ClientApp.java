@@ -69,19 +69,19 @@ public class ClientApp {
     
     private void getAllPersonnes() {
         GenericType<List<Personne>> list = new GenericType<List<Personne>>() {};
-        List<Personne> personnes = client
+        String personnes = client
                 .target(REST_SERVICE_URL)
                 .path("personnes")
                 .request(MediaType.TEXT_PLAIN)
-                .get(list);
+                .get(String.class);
         String result = PASS;
         if (personnes.isEmpty()) {
             result = FAIL;
         }
         System.out.println("getAllPersonnes, Result : " + result);
-        for (Personne p : personnes) {
-            System.out.println(p.toString());
-        }
+        System.out.println("La liste de personnes et leur bureau associé: ");
+        System.out.println(personnes);
+        System.out.println();
     }
     
     private void getBureau(String personne) {
@@ -92,11 +92,17 @@ public class ClientApp {
                 .request(MediaType.TEXT_PLAIN)
                 .get(String.class);
         String result = FAIL;
-        if (bureau != null) {
+        if (bureau.length() >= 1) {
             result = PASS;
         }
         System.out.println("getBureau, Result : " + result);
-        System.out.println(personne + " : " + bureau);
+        if (result == PASS) {
+        	System.out.println(personne + " est dans le bureau:  " + bureau);
+        }
+        else {
+        	System.out.println(personne + " n'est pas dans l'annuaire.");
+        }
+        	System.out.println();
     }
     
     private void getPersonne(String bureau) {
@@ -107,11 +113,17 @@ public class ClientApp {
                 .request(MediaType.TEXT_PLAIN)
                 .get(String.class);
         String result = FAIL;
-        if (personne != null) {
+        if (personne.length() >= 1) {
             result = PASS;
         }
         System.out.println("getPersonne, Result : " + result);
-        System.out.println(bureau + " : " + personne);
+        if (result == PASS) {
+        	System.out.println(bureau + " est le bureau de : " + personne);
+        }
+        else {
+        	System.out.println(bureau + " n'est pas dans l'annuaire.");
+        }
+        System.out.println();
     }
     
     private void post(String personne, String bureau) {
@@ -133,6 +145,7 @@ public class ClientApp {
         }
         
         System.out.println("post, result : " + result);
+        System.out.println();
     }
 
     private void put(String personne, String bureau) {
@@ -154,6 +167,7 @@ public class ClientApp {
         }
         
         System.out.println("put, result : " + result);
+        System.out.println();
     }
 
     private void delete(String personne) {        
@@ -170,6 +184,7 @@ public class ClientApp {
         }
         
         System.out.println("delete, result : " + result);
+        System.out.println();
     }
 
 }

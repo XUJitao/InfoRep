@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/annuaire")
 public class Serveur {
+	private static final String SUCCESS_RESULT = "<result>success</result>";
+	private static final String FAIL_RESULT = "<result>fail</result>";
 	public AnnuaireRessource ar = new AnnuaireRessource();
 	
 	@GET
@@ -45,16 +47,22 @@ public class Serveur {
 	public String ajouterPersonne(@FormParam("nom") String nom, 
 							   @FormParam("bureau") String bureau) {
 		Personne personne = new Personne(nom, bureau);
-		ar.addPersonne(personne);
-		return "Ajouté avec succès";
+		if (ar.getBureau(personne.getNom()) == null) {
+			ar.addPersonne(personne);
+			return SUCCESS_RESULT;
+		}
+		else return FAIL_RESULT;
 	}
 	
 	@DELETE
 	@Path("/personnes/{PERSONNE}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String supprimerPersonne(@PathParam("PERSONNE") String nom) {
-		ar.removeTerm(nom);
-		return "Supprimé avec succès";
+		if (ar.getBureau(nom) != null) {
+			ar.removeTerm(nom);
+			return SUCCESS_RESULT;
+		}
+		else return FAIL_RESULT;
 	}
 	
 	@PUT
@@ -64,7 +72,9 @@ public class Serveur {
 	public String mettreAJourPersonne(@FormParam("nom") String nom,
 									  @FormParam("bureau") String bureau) {
 		Personne personne = new Personne(nom, bureau);
+		if (ar.getBureau(personne.getNom()) == null)
+			return FAIL_RESULT;
 		ar.updateTerm(personne);
-		return "Mis à jour avec succès";
+		return SUCCESS_RESULT;
 	}
 }
