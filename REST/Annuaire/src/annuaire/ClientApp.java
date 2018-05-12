@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 public class ClientApp {
 
     private Client client;
-    private String REST_SERVICE_URL = "http://localhost:8080/Annuaire/rest/annuaire";
+    private String REST_SERVICE_URL = "http://192.168.1.109:8080/Annuaire/rest/annuaire";
     //private String REST_SERVICE_URL = "http://localhost:8080/REST/rest/annuaire";
     private static final String SUCCESS_RESULT = "<result>success</result>";
     private static final String PASS = "pass";
@@ -27,13 +27,7 @@ public class ClientApp {
     
     
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
     	System.out.println("Saisir votre opération: ");
-    	
-//        Client client = ClientBuilder.newClient();
-//        WebTarget webTarget = client.target("http://localhost:8080/REST");
-//        WebTarget restTarget = webTarget.path("rest");
-//        WebTarget annuaireTarget = restTarget.path("annuaire");
         ClientApp clientApp = new ClientApp();
         clientApp.init();
         Scanner sc;
@@ -68,7 +62,6 @@ public class ClientApp {
     }
     
     private void getAllPersonnes() {
-        GenericType<List<Personne>> list = new GenericType<List<Personne>>() {};
         String personnes = client
                 .target(REST_SERVICE_URL)
                 .path("personnes")
